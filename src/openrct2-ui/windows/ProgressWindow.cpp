@@ -10,6 +10,7 @@
 #include <array>
 #include <openrct2-ui/interface/Widget.h>
 #include <openrct2-ui/windows/Windows.h>
+#include <openrct2/audio/audio.h>
 #include <openrct2/Context.h>
 #include <openrct2/SpriteIds.h>
 #include <openrct2/drawing/Drawing.h>
@@ -83,6 +84,7 @@ namespace OpenRCT2::Ui::Windows
     public:
         void OnOpen() override
         {
+            OpenRCT2::Audio::StopAll(true);
             SetWidgets(kProgressWindowWidgets);
             WindowInitScrollWidgets(*this);
 

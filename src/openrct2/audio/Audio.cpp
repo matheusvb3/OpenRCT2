@@ -322,11 +322,14 @@ namespace OpenRCT2::Audio
         }
     }
 
-    void StopAll()
+    void StopAll(bool excludeMusic)
     {
-        StopTitleMusic();
+        if (!excludeMusic)
+        {
+            StopTitleMusic();
+            RideAudio::StopAllChannels();
+        }
         StopVehicleSounds();
-        RideAudio::StopAllChannels();
         PeepStopCrowdNoise();
         ClimateStopWeatherSound();
     }
@@ -417,11 +420,7 @@ namespace OpenRCT2::Audio
     void Pause()
     {
         gGameSoundsOff = true;
-        StopVehicleSounds();
-        RideAudio::StopAllChannels();
-        PeepStopCrowdNoise();
-        ClimateStopWeatherSound();
-        StopTitleMusic();
+        StopAll(false);
     }
 
     void Resume()

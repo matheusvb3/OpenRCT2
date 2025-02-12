@@ -66,5 +66,5 @@ void PreloaderScene::Tick()
 
 void PreloaderScene::Stop()
 {
-    Audio::StopAll();
+    Audio::StopAll(false);
 }
