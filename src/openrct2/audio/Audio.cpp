@@ -322,9 +322,9 @@ namespace OpenRCT2::Audio
         }
     }
 
-    void StopAll(bool excludeMusic)
+    void StopAll(bool preserveMusic)
     {
-        if (!excludeMusic)
+        if (!preserveMusic)
         {
             StopTitleMusic();
             RideAudio::StopAllChannels();
