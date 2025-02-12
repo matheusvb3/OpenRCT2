@@ -264,8 +264,6 @@ namespace OpenRCT2::Audio
      */
     void StopAll(bool excludeMusic);
 
-    AudioObject* GetBaseAudioObject();
-
     std::shared_ptr<IAudioChannel> CreateAudioChannel(
         SoundId soundId, bool loop = false, int32_t volume = kMixerVolumeMax, float pan = 0.5f, double rate = 1,
         bool forget = false);
