@@ -200,7 +200,7 @@ namespace OpenRCT2::Audio
     void InitRideSounds(int32_t device);
 
     /**
-     * Temporarily stops playing sounds until audio_unpause_sounds() is called.
+     * Temporarily stops playing sounds until Resume() is called.
      * rct2: 0x006BABB4
      */
     void Pause();
@@ -253,7 +253,7 @@ namespace OpenRCT2::Audio
     void ToggleAllSounds();
 
     /**
-     * Resumes playing sounds that had been paused by a call to audio_pause_sounds().
+     * Resumes playing sounds that had been paused by a call to Pause().
      * rct2: 0x006BABD8
      */
     void Resume();
