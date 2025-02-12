@@ -169,6 +169,12 @@ namespace OpenRCT2::Audio
      */
     const std::string& GetDeviceName(int32_t index);
 
+     /**
+     * Stops all sound.
+     * @param excludeMusic Determines whether ride and title music should be stopped as well.
+     */
+    void StopAll(bool excludeMusic);
+
     /**
      * Returns the currently used device index, -1 if not available.
      */
@@ -217,9 +223,7 @@ namespace OpenRCT2::Audio
     /**
      * Plays the specified sound at a virtual location.
      * @param soundId The sound effect to play.
-     * @param x The x coordinate of the location.
-     * @param y The y coordinate of the location.
-     * @param z The z coordinate of the location.
+     * @param loc The coordinates of the location.
      */
     void Play3D(SoundId soundId, const CoordsXYZ& loc);
 
@@ -257,12 +261,6 @@ namespace OpenRCT2::Audio
      * rct2: 0x006BABD8
      */
     void Resume();
-
-    /**
-     * Stops all sound.
-     * @param excludeMusic Determines whether ride and title music should be stopped as well.
-     */
-    void StopAll(bool excludeMusic);
 
     std::shared_ptr<IAudioChannel> CreateAudioChannel(
         SoundId soundId, bool loop = false, int32_t volume = kMixerVolumeMax, float pan = 0.5f, double rate = 1,
