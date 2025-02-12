@@ -104,7 +104,7 @@ namespace OpenRCT2::Editor
         context->SetActiveScene(context->GetGameScene());
 
         auto& gameState = GetGameState();
-        Audio::StopAll();
+        Audio::StopAll(false);
         ObjectListLoad();
         gameStateInitAll(gameState, kDefaultMapSize);
         gScreenFlags = SCREEN_FLAGS_SCENARIO_EDITOR;
@@ -166,7 +166,7 @@ namespace OpenRCT2::Editor
         auto* context = GetContext();
         context->SetActiveScene(context->GetGameScene());
 
-        Audio::StopAll();
+        Audio::StopAll(false);
         gScreenFlags = SCREEN_FLAGS_TRACK_DESIGNER;
         gScreenAge = 0;
 
@@ -191,7 +191,7 @@ namespace OpenRCT2::Editor
         auto* context = GetContext();
         context->SetActiveScene(context->GetGameScene());
 
-        Audio::StopAll();
+        Audio::StopAll(false);
         gScreenFlags = SCREEN_FLAGS_TRACK_MANAGER;
         gScreenAge = 0;
 

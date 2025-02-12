@@ -5342,7 +5342,7 @@ namespace OpenRCT2::Ui::Windows
             gGamePaused |= GAME_PAUSED_SAVING_TRACK;
             gTrackDesignSaveMode = true;
 
-            OpenRCT2::Audio::StopAll();
+            OpenRCT2::Audio::StopAll(false);
 
             WindowBase* w_main = WindowGetMain();
             if (w_main != nullptr)

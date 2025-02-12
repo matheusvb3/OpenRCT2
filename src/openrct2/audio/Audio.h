@@ -258,7 +258,11 @@ namespace OpenRCT2::Audio
      */
     void Resume();
 
-    void StopAll();
+    /**
+     * Stops all sound.
+     * @param excludeMusic Determines whether ride and title music should be stopped as well.
+     */
+    void StopAll(bool excludeMusic);
 
     AudioObject* GetBaseAudioObject();
 
