@@ -171,9 +171,9 @@ namespace OpenRCT2::Audio
 
      /**
      * Stops all sound.
-     * @param excludeMusic Determines whether ride and title music should be stopped as well.
+     * @param preserveMusic Determines whether ride and title music should be stopped as well.
      */
-    void StopAll(bool excludeMusic);
+    void StopAll(bool preserveMusic);
 
     /**
      * Returns the currently used device index, -1 if not available.
