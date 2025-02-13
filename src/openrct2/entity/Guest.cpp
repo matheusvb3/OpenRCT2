@@ -4695,14 +4695,18 @@ void Guest::UpdateRideApproachSpiralSlide()
     if (waypoint == 2)
     {
         bool lastRide = false;
-        if (ride->status != RideStatus::Open)
             lastRide = true;
         else if (CurrentCar++ != 0)
+        }
+        else
         {
-            if (ride->mode == RideMode::SingleRidePerAdmission)
-                lastRide = true;
-            if (static_cast<uint8_t>(CurrentCar - 1) > (ScenarioRand() & 0xF))
-                lastRide = true;
+            if (CurrentCar != 0)
+            {
+                if (ride->mode == RideMode::SingleRidePerAdmission || static_cast<uint8_t>(CurrentCar) > (ScenarioRand() & 0xF))
+                    lastRide = true;
+            }
+            // CurrentCar stores the number of times the peep has slid down the spiral slide
+            CurrentCar++;
         }
 
         if (lastRide)
