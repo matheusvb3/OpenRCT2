@@ -4692,9 +4692,9 @@ void Guest::UpdateRideApproachSpiralSlide()
     }
 
     [[maybe_unused]] const auto& rtd = ride->GetRideTypeDescriptor();
+    bool lastRide = false;
     if (waypoint == 2)
     {
-        bool lastRide = false;
         if (ride->status == RideStatus::Closed || (ride->num_riders > ride->operation_option))
             lastRide = true;
         else
@@ -4707,37 +4707,38 @@ void Guest::UpdateRideApproachSpiralSlide()
             // CurrentCar stores the number of times the peep has slid down the spiral slide
             CurrentCar++;
         }
-
-        if (lastRide)
-        {
-            auto exit = ride->GetStation(CurrentRideStation).Exit;
-            waypoint = 1;
-            auto directionTemp = exit.direction;
-            if (exit.direction == INVALID_DIRECTION)
-            {
-                directionTemp = 0;
-            }
-            Var37 = (directionTemp * 4) | (Var37 & 0x30) | waypoint;
-            CoordsXY targetLoc = ride->GetStation(CurrentRideStation).Start;
-
-            assert(rtd.specialType == RtdSpecialType::spiralSlide);
-            targetLoc += kSpiralSlideWalkingPath[Var37];
-
-            SetDestination(targetLoc);
-            RideSubState = PeepRideSubState::LeaveSpiralSlide;
-            return;
-        }
     }
-    waypoint++;
-    // Actually increment the real peep waypoint
-    Var37++;
+    if (lastRide)
+    {
+        auto exit = ride->GetStation(CurrentRideStation).Exit;
+        waypoint = 1;
+        auto directionTemp = exit.direction;
+        if (exit.direction == INVALID_DIRECTION)
+        {
+            directionTemp = 0;
+        }
+        Var37 = (directionTemp * 4) | (Var37 & 0x30) | waypoint;
+        CoordsXY targetLoc = ride->GetStation(CurrentRideStation).Start;
 
-    CoordsXY targetLoc = ride->GetStation(CurrentRideStation).Start;
+        assert(rtd.specialType == RtdSpecialType::spiralSlide);
+        targetLoc += kSpiralSlideWalkingPath[Var37];
 
-    assert(rtd.specialType == RtdSpecialType::spiralSlide);
-    targetLoc += kSpiralSlideWalkingPath[Var37];
+        SetDestination(targetLoc);
+        RideSubState = PeepRideSubState::LeaveSpiralSlide;
+    }
+    else
+    {
+        waypoint++;
+        // Actually increment the real peep waypoint
+        Var37++;
 
-    SetDestination(targetLoc);
+        CoordsXY targetLoc = ride->GetStation(CurrentRideStation).Start;
+
+        assert(rtd.specialType == RtdSpecialType::spiralSlide);
+        targetLoc += kSpiralSlideWalkingPath[Var37];
+
+        SetDestination(targetLoc);
+    }
 }
 
 /** rct2: 0x00981F0C, 0x00981F0E */
