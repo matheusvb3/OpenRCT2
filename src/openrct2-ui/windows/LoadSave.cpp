@@ -734,7 +734,7 @@ namespace OpenRCT2::Ui::Windows
             if (!(gScreenFlags & SCREEN_FLAGS_TITLE_DEMO) && NetworkGetMode() == NETWORK_MODE_NONE)
             {
                 gGamePaused |= GAME_PAUSED_MODAL;
-                Audio::StopAll(false);
+                Audio::StopAll();
             }
 
             if (isSave)

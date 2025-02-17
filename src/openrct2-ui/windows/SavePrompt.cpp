@@ -108,7 +108,7 @@ namespace OpenRCT2::Ui::Windows
             if (NetworkGetMode() == NETWORK_MODE_NONE)
             {
                 gGamePaused |= GAME_PAUSED_MODAL;
-                Audio::StopAll(false);
+                Audio::StopAll();
             }
 
             auto* windowMgr = Ui::GetWindowManager();
