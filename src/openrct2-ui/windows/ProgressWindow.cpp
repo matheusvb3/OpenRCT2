@@ -10,9 +10,9 @@
 #include <array>
 #include <openrct2-ui/interface/Widget.h>
 #include <openrct2-ui/windows/Windows.h>
-#include <openrct2/audio/audio.h>
 #include <openrct2/Context.h>
 #include <openrct2/SpriteIds.h>
+#include <openrct2/audio/audio.h>
 #include <openrct2/drawing/Drawing.h>
 #include <openrct2/drawing/Text.h>
 #include <openrct2/localisation/Formatting.h>
