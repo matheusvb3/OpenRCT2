@@ -34,5 +34,5 @@ void GameScene::Tick()
 
 void GameScene::Stop()
 {
-    Audio::StopAll(false);
+    Audio::StopAll();
 }

@@ -168,7 +168,7 @@ void TitleScene::Tick()
 
 void TitleScene::Stop()
 {
-    Audio::StopAll(false);
+    Audio::StopAll();
 }
 
 void TitleScene::ChangePresetSequence(size_t preset)

@@ -146,7 +146,7 @@ void PauseToggle()
 
     if (gGamePaused & GAME_PAUSED_NORMAL)
     {
-        OpenRCT2::Audio::StopAll(false);
+        OpenRCT2::Audio::StopAll();
     }
 }
 

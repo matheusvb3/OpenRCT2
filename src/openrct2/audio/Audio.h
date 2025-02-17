@@ -170,10 +170,14 @@ namespace OpenRCT2::Audio
     const std::string& GetDeviceName(int32_t index);
 
     /**
-     * Stops all sound.
-     * @param preserveMusic Determines whether ride and title music should be stopped as well.
+     * Stops all sound effects.
      */
-    void StopAll(bool preserveMusic);
+    void StopSFX();
+
+    /**
+     * Stops all sound.
+     */
+    void StopAll();
 
     /**
      * Returns the currently used device index, -1 if not available.
