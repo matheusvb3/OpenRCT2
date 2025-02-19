@@ -84,7 +84,7 @@ namespace OpenRCT2::Ui::Windows
     public:
         void OnOpen() override
         {
-            OpenRCT2::Audio::StopSFX();
+            Audio::StopSFX();
             SetWidgets(kProgressWindowWidgets);
             WindowInitScrollWidgets(*this);
 
