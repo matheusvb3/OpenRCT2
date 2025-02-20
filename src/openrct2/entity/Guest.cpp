@@ -4695,6 +4695,7 @@ void Guest::UpdateRideApproachSpiralSlide()
     bool lastRide = false;
     if (waypoint == 2)
     {
+        // Make guest leave if the number of people currently in the ride is bigger than the maximum allowed
         if (ride->status == RideStatus::Closed || (ride->num_riders > ride->operation_option))
             lastRide = true;
         else
@@ -4702,6 +4703,11 @@ void Guest::UpdateRideApproachSpiralSlide()
             if (CurrentCar != 0)
             {
                 if (ride->mode == RideMode::SingleRidePerAdmission || static_cast<uint8_t>(CurrentCar) > (ScenarioRand() & 0xF))
+                    lastRide = true;
+                else if (ClimateIsRaining() || ClimateIsSnowingHeavily())
+                    lastRide = true;
+                // If the time the guest has been on the ride is too much, don't slide again
+                else if (auto* guest = GetEntity<Guest>(ride->slide_peep); guest != nullptr && guest->GuestTimeOnRide > 15)
                     lastRide = true;
             }
             // CurrentCar stores the number of times the peep has slid down the spiral slide
