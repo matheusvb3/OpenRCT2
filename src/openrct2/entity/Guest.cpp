@@ -4783,6 +4783,7 @@ void Guest::UpdateRideOnSpiralSlide()
     {
         switch (destination.x)
         {
+            // Guest is going up the tower
             case 0:
                 destination.y++;
                 if (destination.y >= 30)
@@ -4790,8 +4791,10 @@ void Guest::UpdateRideOnSpiralSlide()
 
                 SetDestination(destination);
                 return;
+            // Guest is waiting to slide down
             case 1:
-                if (ride->slide_in_use)
+                // Do not allow guest to slide down if the ride is broken
+                if (ride->slide_in_use || ride->lifecycle_flags & RIDE_LIFECYCLE_BROKEN_DOWN)
                     return;
 
                 ride->slide_in_use = 1;
@@ -4802,8 +4805,10 @@ void Guest::UpdateRideOnSpiralSlide()
 
                 SetDestination(destination);
                 return;
+            // Guest is sliding down
             case 2:
                 return;
+            // Guest has finished sliding down
             case 3:
             {
                 auto newLocation = ride->GetStation(CurrentRideStation).Start;
