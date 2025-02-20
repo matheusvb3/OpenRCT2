@@ -4791,10 +4791,10 @@ void Guest::UpdateRideOnSpiralSlide()
                 SetDestination(destination);
                 return;
             case 1:
-                if (ride->slide_in_use != 0)
+                if (ride->slide_in_use)
                     return;
 
-                ride->slide_in_use++;
+                ride->slide_in_use = 1;
                 ride->slide_peep = Id;
                 ride->slide_peep_t_shirt_colour = TshirtColour;
                 ride->spiral_slide_progress = 0;
