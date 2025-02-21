@@ -1505,9 +1505,8 @@ bool Guest::DecideAndBuyItem(Ride& ride, const ShopItem shopItem, money64 price)
 
     bool hasVoucher = false;
 
-    const bool isPrecipitating = ClimateIsRaining() || ClimateIsSnowingHeavily();
     const bool isUmbrella = shopItem == ShopItem::Umbrella;
-    const bool isRainingAndUmbrella = isPrecipitating && isUmbrella;
+    const bool isRainingAndUmbrella = ClimateIsPrecipitating() && isUmbrella;
 
     if ((HasItem(ShopItem::Voucher)) && (VoucherType == VOUCHER_TYPE_FOOD_OR_DRINK_FREE) && (VoucherShopItem == shopItem))
     {
@@ -1536,7 +1535,7 @@ bool Guest::DecideAndBuyItem(Ride& ride, const ShopItem shopItem, money64 price)
 
     if ((shopItem == ShopItem::Balloon || shopItem == ShopItem::IceCream || shopItem == ShopItem::Candyfloss
          || shopItem == ShopItem::Sunglasses)
-        && isPrecipitating)
+        && ClimateIsPrecipitating())
     {
         return false;
     }
@@ -2081,8 +2080,7 @@ bool Guest::ShouldGoOnRide(Ride& ride, StationIndex entranceNum, bool atQueue, b
                 }
                 else
                 {
-                    const bool isPrecipitating = ClimateIsRaining() || ClimateIsSnowingHeavily();
-                    if (isPrecipitating && !ShouldRideWhileRaining(ride))
+                    if (ClimateIsPrecipitating() && !ShouldRideWhileRaining(ride))
                     {
                         if (peepAtRide)
                         {
@@ -2098,7 +2096,7 @@ bool Guest::ShouldGoOnRide(Ride& ride, StationIndex entranceNum, bool atQueue, b
                     }
                     // If it is raining and the ride provides shelter skip the
                     // ride intensity check and get me on a sheltered ride!
-                    if (!isPrecipitating || !ShouldRideWhileRaining(ride))
+                    if (!ClimateIsPrecipitating() || !ShouldRideWhileRaining(ride))
                     {
                         if (!GetGameState().Cheats.ignoreRideIntensity)
                         {
@@ -4704,7 +4702,7 @@ void Guest::UpdateRideApproachSpiralSlide()
             {
                 if (ride->mode == RideMode::SingleRidePerAdmission || static_cast<uint8_t>(CurrentCar) > (ScenarioRand() & 0xF))
                     lastRide = true;
-                else if (ClimateIsRaining() || ClimateIsSnowingHeavily())
+                else if (ClimateIsPrecipitating())
                     lastRide = true;
                 // If the time the guest has been on the ride is too much, don't slide again
                 else if (auto* guest = GetEntity<Guest>(ride->slide_peep); guest != nullptr && guest->GuestTimeOnRide > 15)
@@ -6876,8 +6874,7 @@ void Guest::UpdateAnimationGroup()
         WindowInvalidateFlags |= PEEP_INVALIDATE_PEEP_INVENTORY;
     }
 
-    const bool isPrecipitating = ClimateIsRaining() || ClimateIsSnowingHeavily();
-    if (isPrecipitating && (HasItem(ShopItem::Umbrella)) && x != kLocationNull)
+    if (ClimateIsPrecipitating() && (HasItem(ShopItem::Umbrella)) && x != kLocationNull)
     {
         CoordsXY loc = { x, y };
         if (MapIsLocationValid(loc.ToTileStart()))
