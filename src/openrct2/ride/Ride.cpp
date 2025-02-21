@@ -1248,7 +1248,7 @@ void UpdateSpiralSlide(Ride& ride)
     ride.spiral_slide_progress++;
     if (ride.spiral_slide_progress >= 48)
     {
-        ride.slide_in_use = 0;
+        ride.slide_in_use = false;
 
         auto* peep = GetEntity<Guest>(ride.slide_peep);
         if (peep != nullptr)
