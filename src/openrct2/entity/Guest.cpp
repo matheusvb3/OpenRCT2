@@ -4795,7 +4795,7 @@ void Guest::UpdateRideOnSpiralSlide()
                 if (ride->slide_in_use || ride->lifecycle_flags & RIDE_LIFECYCLE_BROKEN_DOWN)
                     return;
 
-                ride->slide_in_use = 1;
+                ride->slide_in_use = true;
                 ride->slide_peep = Id;
                 ride->slide_peep_t_shirt_colour = TshirtColour;
                 ride->spiral_slide_progress = 0;
